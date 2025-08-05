@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Untukmu, MY LOVE ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(120deg, #ffd6e0, #ffe6f0);
+      background-size: 200% 200%;
+      animation: bgMove 8s infinite alternate;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+      overflow-y: auto;
+    }
+
+    @keyframes bgMove {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+
+    .container {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 20px;
+      max-width: 800px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 20px rgba(255, 105, 180, 0.3);
+      overflow-y: auto;
+      max-height: 80vh;
+    }
+
+    h1 {
+      color: #000000;
+      font-size: 2em;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .typewriter {
+      font-family: 'Dancing Script', cursive;
+      color: #000000;
+      font-size: 1.2em;
+      line-height: 1.8;
+      white-space: pre-wrap;
+      overflow: hidden;
+      border-right: 2px solid #fff;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
+    .heart {
+      width: 15px;
+      height: 15px;
+      position: absolute;
+      background: pink;
+      transform: rotate(45deg);
+      animation: floatUp 6s linear infinite;
+    }
+
+    .heart:before, .heart:after {
+      content: "";
+      width: 15px;
+      height: 15px;
+      position: absolute;
+      background: pink;
+      border-radius: 50%;
+    }
+
+    .heart:before {
+      top: -7.5px;
+      left: 0;
+    }
+
+    .heart:after {
+      left: -7.5px;
+      top: 0;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    /* Transisi Halaman */
+    #page-transition {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(255, 192, 203, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+
+    #page-transition.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .transition-heart {
+      font-size: 120px;
+      color: hotpink;
+      animation: bounce 1s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* Tombol musik */
+    .music-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #ff69b4;
+      border: none;
+      color: white;
+      padding: 10px 15px;
+      font-size: 16px;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+      transition: background-color 0.3s;
+    }
+
+    .music-btn:hover {
+      background-color: #ff85c1;
+    }
+
+    /* Menyesuaikan ukuran teks untuk perangkat kecil */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.6em;
+      }
+
+      .typewriter {
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Transisi Love -->
+  <div id="page-transition">
+    <div class="transition-heart">❤️</div>
+  </div>
+
+  <!-- Audio -->
+  <audio id="music" autoplay loop>
+    <source src="music/lagu-ucapan.mp3" type="audio/mpeg">
+    Browser kamu tidak mendukung audio 😢
+  </audio>
+
+  <!-- Kontainer isi -->
+  <div class="ucapan-container">
+    <h1>Untuk sayangku 💖</h1>
+    <div class="typewriter" id="typewriterText"></div>
+  </div>
+
+  <!-- Tombol kontrol musik -->
+  <button class="music-btn" onclick="toggleMusic()">ini juga ada lagunyaa lohh</button>
+
+  <!-- Script -->
+  <script>
+    const text = `
+Sayangkuuu, cintakuuu, cantikkuuuu... ❤️
+
+Dari semua kata yang bisa aku ucapin, cuma satu yang pengen aku tekankan:
+Aku sayang banget sama kamu, lebih dari apapun di dunia ini.
+
+Sayanggg... aku mungkin gak selalu bisa baca pikiran kamu, tapi aku selalu bisa merasakan ketika kamu lagi ga mood. Aku sedih liat kamu kayak gini, tapi aku di sini, sayang. Bukan buat ngejudiin atau maksa kamu cerita, tapi buat ngingetin kamu satu hal: kamu nggak sendirian.
+
+Aku tahu kadang dunia terasa berat, dan mungkin kamu lagi lelah atau kesel sama sesuatu. Tapi ingat ya, aku selalu ada—buat dengerin, buat peluk (meski dari jauh dulu), atau bahkan buat diem-berdua aja kalau itu yang kamu butuhin.
+
+Kamu itu sumber semangatku, alasan aku bisa tersenyum di hari-hari sulit. Aku bersyukur banget Allah ngasih aku kamu, orang yang bikin dunianya terasa lebih hangat, lebih berarti... lebih "home".
+
+Aku gak bisa janji bisa ilangin semua masalah kamu, tapi aku bisa janji ini:
+
+Aku bakal terus berusaha bikin kamu bahagia, sekecil apapun caranya.
+
+Aku bakal jadi tempat kamu bersandar, bahkan di detik-detik kamu ngerasa rapuh.
+
+Aku bakal tetap di sini, lewatin senang-susah bareng kamu.
+
+Kalau kamu capek, ingat ini: Aku cinta kamu. Tanpa pause, tanpa syarat. Nggak peduli jauh-deket, aku bakal jaga kamu—dalam diam, dalam doa, atau dalam cerita-cerita kecil yang kita bagi.
+
+Dan satu hal lagi... Aku pengen banget jadi alasan kamu tersenyum lagi. Jadi tolong, kalo ada yang bisa aku bantu (meski cuma dengerin atau beliin es krim), kasih tau ya?
+
+You’re my person, sayang. Aku sayang kamu melebihi apapun. ❤️
+
+Always here for you...
+Love you moreee. 💞
+`;
+    let i = 0;
+    const speed = 50;
+    function typeWriter() {
+      if (i < text.length) {
+        document.getElementById("typewriterText").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+      }
+    }
+    typeWriter();
+
+    // Hati mengambang
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 300);
+
+    // Kontrol musik
+    const music = document.getElementById("music");
+    const musicBtn = document.querySelector(".music-btn");
+
+    function toggleMusic() {
+      if (music.paused) {
+        music.play();
+        musicBtn.innerHTML = "pause";
+      } else {
+        music.pause();
+        musicBtn.innerHTML = "play";
+      }
+    }
+
+    // Transisi halaman
+    const links = document.querySelectorAll("a");
+    const transition = document.getElementById("page-transition");
+
+    links.forEach(link => {
+      link.addEventListener("click", function(e) {
+        e.preventDefault();
+        const href = this.getAttribute("href");
+        transition.classList.add("show");
+        setTimeout(() => {
+          window.location.href = href;
+        }, 800); // durasi animasi
+      });
+    });
+  </script>
+
+</body>
+</html>

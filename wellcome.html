@@ -1,0 +1,176 @@
+<!DOCTYPE html> 
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hallo sayaaangkuuu</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* Love Background Container */
+    #love-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .heart {
+      width: 15px;
+      height: 15px;
+      position: absolute;
+      background: pink;
+      transform: rotate(45deg);
+      animation: floatUp 6s linear infinite;
+      opacity: 0.7;
+    }
+
+    .heart:before, .heart:after {
+      content: "";
+      width: 15px;
+      height: 15px;
+      position: absolute;
+      background: pink;
+      border-radius: 50%;
+    }
+
+    .heart:before {
+      top: -7.5px;
+      left: 0;
+    }
+
+    .heart:after {
+      left: -7.5px;
+      top: 0;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    /* Transisi Halaman */
+    #page-transition {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(255, 192, 203, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+
+    #page-transition.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .transition-heart {
+      font-size: 150px;
+      color: hotpink;
+      animation: bounce 1s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Love Floating Background -->
+  <div id="love-bg"></div>
+
+  <!-- Audio & Play Button -->
+  <audio id="backsound" loop>
+    <source src="music/laguu.mp3" type="audio/mpeg">
+  </audio>
+
+  <button onclick="playMusic()" class="btn-love">
+    Klik ini buat denger lagunya yaa sayang 🎶
+  </button>
+
+  <!-- Konten Utama -->
+  <div class="container">
+    <img src="img/couple.jpg" alt="Foto Berdua" class="photo"/>
+    <h1>Hallo sayangku cintaku maniskuuu ❤️</h1>
+    <p>Aku punya sesuatuu buat kamuuu...</p>
+    <p>Btw maaf yaa sayaang, aku sering bikin kamu kesel. Tapi aku sayang banget sama kamuuu 💖</p>
+    <p>Love you more sayaaangkuuu! ❤️</p>
+    <p>Nanti kalo kamu pencet tombol dibawah,kamu scroll lagii yaa</p>
+  </div>
+
+  <button class="love-button" onclick="showLove()">coba klik ini terus bakal ada yang muncul ❤️</button>
+
+  <div class="gallery">
+    <h2>Siapaaa niiii 📸</h2>
+    <img src="img/galeri1.jpg" alt="Galeri 1">
+    <img src="img/galeri2.jpg" alt="Galeri 2">
+    <img src="img/galeri3.jpg" alt="Galeri 3">
+  </div>
+
+  <div style="margin-top: 30px; text-align: center;">
+    <p style="color: #d63384; font-size: 1.1em;">sekarang sayaang klik link di bawah ini yaa cantikku, aku punya sesuatu buat kamu tapii tunggu lagunyaa beress yaa 💖</p>
+    <a href="ucapan.html" class="btn-love">ini sayang ❤️</a>
+  </div>
+
+  <!-- Transisi Halaman -->
+  <div id="page-transition">
+    <div class="transition-heart">💖</div>
+  </div>
+
+  <!-- JS -->
+  <script src="script.js"></script>
+  <script>
+    function playMusic() {
+      const audio = document.getElementById("backsound");
+      audio.play().then(() => {
+        console.log("Lagu diputar");
+      }).catch(err => {
+        alert("Klik tombol ini dulu sayang biar lagunya jalan 💖");
+      });
+    }
+
+    // Love Animation ke dalam #love-bg
+    const loveBg = document.getElementById("love-bg");
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+      loveBg.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 300);
+
+    // Transisi pindah halaman romantis
+    document.querySelectorAll('a[href]').forEach(link => {
+      const href = link.getAttribute('href');
+      if (href && !href.startsWith('#')) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const transition = document.getElementById('page-transition');
+          transition.classList.add('show');
+          setTimeout(() => {
+            window.location.href = href;
+          }, 1500); // waktu delay 1.5 detik
+        });
+      }
+    });
+  </script>
+</body>
+</html>

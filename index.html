@@ -1,0 +1,163 @@
+<!DOCTYPE html> 
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Haii cantikk!</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html { height: 100%; overflow: hidden; font-family: 'Comic Sans MS', cursive; }
+    body {
+      position: relative;
+      background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
+      background-size: 400% 400%;
+      animation: gradient 10s ease infinite;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      z-index: 1;
+    }
+    @keyframes gradient {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 1em;
+      z-index: 2;
+      /* Animasi pada h1 dihapus agar teks tidak ikut bounce */
+    }
+    .btn-start {
+      padding: 1em 2em;
+      font-size: 1.2em;
+      background-color: #fff;
+      color: #e91e63;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(255, 0, 100, 0.3);
+      transition: transform 0.3s ease;
+      z-index: 2;
+    }
+    .btn-start:hover { transform: scale(1.1); }
+    #heart-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+
+    /* Transisi Overlay */
+    #page-transition {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(255, 192, 203, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.5s ease;
+    }
+
+    #page-transition.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .transition-heart {
+      font-size: 150px;
+      color: hotpink;
+      animation: bounce 1s infinite;  /* Animasi bounce hanya untuk hati */
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="heart-canvas"></canvas>
+  <h1>Halo bubu sayangku 💕<br>tolong klik ini yaaa cantik💖 </h1>
+  <button class="btn-start" onclick="startTransition()">klik ini sayang💖</button>
+
+  <!-- Overlay Transition -->
+  <div id="page-transition">
+    <span class="transition-heart">💖</span> <!-- Animasi hanya berlaku di sini -->
+  </div>
+
+  <script>
+    let hearts = [];
+
+    function startTransition() {
+      // Menampilkan overlay dengan animasi
+      const pageTransition = document.getElementById('page-transition');
+      pageTransition.classList.add('show');
+
+      // Tunggu transisi selesai sebelum berpindah halaman
+      setTimeout(function() {
+        window.location.href = "wellcome.html"; // Ganti dengan halaman tujuan
+      }, 500); // Waktu transisi fade-out adalah 0.5 detik
+    }
+
+    // Animasi partikel hati
+    const canvas = document.getElementById("heart-canvas");
+    const ctx = canvas.getContext("2d");
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    function createHeart() {
+      const size = Math.random() * 10 + 10;
+      hearts.push({
+        x: Math.random() * canvas.width,
+        y: -size,
+        size,
+        speed: Math.random() * 1 + 0.5,
+        opacity: Math.random() * 0.5 + 0.5
+      });
+    }
+
+    function drawHeart(h) {
+      ctx.save();
+      ctx.globalAlpha = h.opacity;
+      ctx.translate(h.x, h.y);
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.bezierCurveTo(0, -h.size / 2, -h.size, -h.size / 2, -h.size, 0);
+      ctx.bezierCurveTo(-h.size, h.size / 2, 0, h.size, 0, h.size * 1.5);
+      ctx.bezierCurveTo(0, h.size, h.size, h.size / 2, h.size, 0);
+      ctx.bezierCurveTo(h.size, -h.size / 2, 0, -h.size / 2, 0, 0);
+      ctx.fillStyle = "rgba(255, 105, 180, 1)";
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (Math.random() < 0.05) createHeart();
+
+      for (let i = 0; i < hearts.length; i++) {
+        hearts[i].y += hearts[i].speed;
+        drawHeart(hearts[i]);
+        if (hearts[i].y > canvas.height + hearts[i].size) {
+          hearts.splice(i, 1);
+          i--;
+        }
+      }
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>
